@@ -19,23 +19,16 @@ public class Calculator {
         return p / x;
     }
 
-    public int sumAllOperation() {
-        return sum(10) + minus(25) + multiply(5) + divide(20);
+    public int sumAllOperation(int o) {
+        return sum(o) + minus(o) + multiply(o) + divide(o);
     }
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-        Calculator del = new Calculator();
-        Calculator sumAll = new Calculator();
-        int rslTwo = del.divide(20);
-        int rsl = calculator.multiply(5);
-        int rslOne = Calculator.minus(25);
-        int result = Calculator.sum(10);
-        int rslThree = sumAll.sumAllOperation();
-        System.out.println(result);
-        System.out.println(rsl);
-        System.out.println(rslOne);
-        System.out.println(rslTwo);
-        System.out.println(rslThree);
+        System.out.println(sum(1));
+        System.out.println(minus(2));
+        System.out.println(calculator.multiply(3));
+        System.out.println(calculator.divide(20));
+        System.out.println(calculator.sumAllOperation(10));
     }
 }
