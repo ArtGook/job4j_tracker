@@ -20,11 +20,15 @@ public class Tracker {
     public Item[] findByName(String key) {
         int counter = 0;
         Item[] rsl = new Item[items.length];
-        for (int i = 0; i < size; i++) {
-            if (items[i].getName().equals(key)) {
-                rsl[counter] = items[i];
-                counter++;
+        if (key != null) {
+            for (int i = 0; i < size; i++) {
+                if (items[i].getName().equals(key)) {
+                    rsl[counter] = items[i];
+                    counter++;
+                }
             }
+        } else {
+            System.out.println("Error");
         }
         return Arrays.copyOf(rsl, counter);
     }
@@ -36,37 +40,49 @@ public class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
-                rsl = index;
-                break;
+        if (id >= 0) {
+            for (int index = 0; index < size; index++) {
+                if (items[index].getId() == id) {
+                    rsl = index;
+                    break;
+                }
             }
+        } else {
+            System.out.println("Error");
         }
         return rsl;
     }
 
     public boolean replace(int id, Item item) {
         boolean rsl = false;
-        int index = indexOf(id);
+        if (id >= 0) {
+            int index = indexOf(id);
             if (index != -1) {
                 item.setId(id);
                 items[index] = item;
                 rsl = true;
             }
+        } else {
+            System.out.println("Error");
+        }
         return rsl;
     }
 
     public boolean delete(int id) {
         boolean rsl = false;
-        int index = indexOf(id);
-        int start = index + 1;
-        int distPos = index;
-        int length = size - index - 1;
-        if (index != -1) {
-            System.arraycopy(items, start, items, distPos, length);
-            items[size - 1] = null;
-            size--;
-            rsl = true;
+        if (id >= 0) {
+            int index = indexOf(id);
+            int start = index + 1;
+            int distPos = index;
+            int length = size - index - 1;
+            if (index != -1) {
+                System.arraycopy(items, start, items, distPos, length);
+                items[size - 1] = null;
+                size--;
+                rsl = true;
+            } else {
+                System.out.println("Error");
+            }
         }
         return rsl;
     }
